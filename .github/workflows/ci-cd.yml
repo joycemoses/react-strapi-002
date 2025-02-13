@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - mono-repo
+  pull_request:
+    branches:
+      - mono-repo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    # Comment out or remove this step if you don't have tests
+    # - name: Run tests
+    #   run: npm test
